@@ -1,0 +1,3 @@
+public abstract class Cuisine {
+    public abstract String prepareDish(String dish);
+}
