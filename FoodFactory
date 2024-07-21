@@ -1,0 +1,30 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class FoodFactory {
+    private static FoodFactory instance;
+    private Map<String, Cuisine> cuisines;
+
+    private FoodFactory() {
+        cuisines = new HashMap<>();
+    }
+
+    public static FoodFactory getFactory() {
+        if (instance == null) {
+            instance = new FoodFactory();
+        }
+        return instance;
+    }
+
+    public void registerCuisine(String cuisineKey, Cuisine cuisine) {
+        cuisines.put(cuisineKey, cuisine);
+    }
+
+    public Cuisine serveCuisine(String cuisineKey, String dish) throws UnservableCuisineRequestException {
+        Cuisine cuisine = cuisines.get(cuisineKey);
+        if (cuisine == null) {
+            throw new UnservableCuisineRequestException("Unservable cuisine [" + cuisineKey + "] for dish [" + dish + "]");
+        }
+        return cuisine;
+    }
+}
