@@ -1,0 +1,6 @@
+public class JapaneseCuisine extends Cuisine {
+    @Override
+    public String prepareDish(String dish) {
+        return "Preparing Japanese dish: " + dish;
+    }
+}
