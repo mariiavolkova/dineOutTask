@@ -1,0 +1,23 @@
+public class Main {
+    public static void main(String[] args) {
+        try {
+            FoodFactory factory = FoodFactory.getFactory();
+
+            factory.registerCuisine("Italian", new ItalianCuisine());
+            factory.registerCuisine("Japanese", new JapaneseCuisine());
+
+            Cuisine italianCuisine = factory.serveCuisine("Italian", "Lasagne");
+            System.out.println(italianCuisine.prepareDish("Lasagne"));
+
+            Cuisine japaneseCuisine = factory.serveCuisine("Japanese", "Kamameshi");
+            System.out.println(japaneseCuisine.prepareDish("Kamameshi"));
+
+            // Пример попытки обслужить незарегистрированную кухню
+            Cuisine polishCuisine = factory.serveCuisine("Polish", "Marjoram");
+            System.out.println(polishCuisine.prepareDish("Marjoram"));
+
+        } catch (UnservableCuisineRequestException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
